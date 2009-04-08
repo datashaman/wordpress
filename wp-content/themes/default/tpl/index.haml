@@ -1,0 +1,33 @@
+- get_header()
+
+#id.narrowcolumn
+  - if(have_posts()):
+    - while(have_posts())
+      - the_post()
+      - $class = join(' ', get_post_class())
+      %div{ :id => 'post'.the_ID(), :class => $class }
+        %h2
+          %a{ :href => the_permalink(), :rel => 'bookmark', :title => 'Permanent Link to '.the_title_attribute() }
+            - the_title()
+        %small
+          - the_time('F jS, Y')
+        .entry
+          - the_content('Read the rest of this entry &raquo;')
+        %p.postmetadata
+          - the_tags('Tags: ', ', ', '<br />')
+          = 'Posted in '.the_category().' | '
+          - edit_post_link('Edit', '', ' | ')
+          - comments_popup_link('No Comments &#187;', '1 Comment &#187;', '%Comments &#187;')
+    .navigation
+      .alignleft
+        - next_post_link('&laquo; Older Entries')
+      .alignright
+        - previous_post_link('Newer Entries &raquo;')
+  - else:
+    %h2.center Not Found
+    %p.center Sorry, but you are looking for something that isn't here.
+    - get_search_form()
+  - endif
+
+- get_sidebar()
+- get_footer()
