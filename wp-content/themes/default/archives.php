@@ -1,7 +1,7 @@
 <?php
 /**
  * @package WordPress
- * @subpackage Default_Theme
+ * @subpackage HAML_Theme
  */
 /*
 Template Name: Archives
