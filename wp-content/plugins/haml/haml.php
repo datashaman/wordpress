@@ -140,4 +140,8 @@ function haml_the_post()
   return $post;
 }
 
-add_action('template_redirect', 'haml_template_redirect');
+$theme_data = get_theme_data(get_template_directory().'/style.css');
+
+if(in_array('haml', $theme_data['Tags'])) {
+  add_action('template_redirect', 'haml_template_redirect');
+}
