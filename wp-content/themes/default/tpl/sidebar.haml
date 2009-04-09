@@ -1,0 +1,68 @@
+#sidebar
+  %ul
+    - $render_sidebar = !function_exists('dynamic_sidebar') or !dynamic_sidebar()
+    - if(true or $render_sidebar)
+      %li
+        - get_search_form()
+
+      - $render_info = is_category() or is_day() or is_month() or is_year() or is_search() or is_paged()
+      - if($render_info)
+        %li
+          - switch(true)
+            - case is_category():
+              %p= 'You are currently browsing the archives for the '.single_cat_title('').' category.'
+
+            - case is_day():
+              %p
+                You are currently browsing the
+                %a{ :href => get_bloginfo('url').'/' }= get_bloginfo('name').' blog archives for the day '.the_time('l, F jS, Y').'.'
+
+            - case is_month():
+              %p
+                You are currently browsing the
+                %a{ :href => get_bloginfo('url').'/' }= get_bloginfo('name').' blog archives for '.the_time('F Y').'.'
+
+            - case is_year():
+              %p
+                You are currently browsing the
+                %a{ :href => get_bloginfo('url').'/' }= get_bloginfo('name').' blog archives for the year '.the_time('Y').'.'
+
+            - case is_search():
+              %p
+                You have searched the
+                %a{ :href => get_bloginfo('url').'/' }= get_bloginfo('name').' blog archives for '
+                %strong= "'".the_search_query()."'"
+                If you are unable to find anything in these search results, you can try one of these links.
+
+            - case isset($_GET['paged']) and !empty($_GET['paged']):
+              %p
+                You are currently browsing the
+                %a{ :href => get_bloginfo('url').'/' }= get_bloginfo('name')
+                blog archives.
+
+      - wp_list_pages('title_li=<h2>Pages</h2>')
+
+      %li
+        %h2 Archives
+        %ul= wp_get_archives('type=monthly')
+
+      - $is_frontpage = is_home() or is_page()
+      - if($is_frontpage)
+        - wp_list_bookmarks()
+
+        %li
+          %h2 Meta
+          %ul
+            - wp_register()
+            %li= wp_loginout()
+            %li
+              %a{ :href => "http://validator.w3.org/check/referer", :title => "This page validates as XHTML 1.0 Transitional" }
+                Valid
+                %abbr{ :title => 'eXtensible HyperText Markup Language' } XHTML
+            %li
+              %a{ :href => "http://gmpg.org/xfn/" }
+                %abbr{ :title => 'XHTML Friends Network' } XFN
+            %li
+              %a{ :href => "http://wordpress.org/" }
+                %abbr{ :title => 'Powered by WordPress - state-of-the-art semantic personal publishing platform.' } WordPress
+            - wp_meta()

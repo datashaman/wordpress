@@ -1,0 +1,10 @@
+%hr
+#footer
+  %p
+    = get_bloginfo('name').' is proudly powered by'
+    %a{ :href => "http://wordpress.org/" } WordPress
+    %br
+    %a{ :href => get_bloginfo('rss2_url') } Entries (RSS)
+    and
+    %a{ :href => get_bloginfo('comments2_rss2_url') } Comments (RSS)
+    - wp_footer()
