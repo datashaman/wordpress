@@ -46,6 +46,8 @@
         %h2 Archives
         %ul= wp_get_archives('type=monthly')
 
+      - wp_list_categories('show_count=1&title_li=<h2>Categories</h2>')
+
       - $is_frontpage = is_home() or is_page()
       - if($is_frontpage)
         - wp_list_bookmarks()
