@@ -113,4 +113,31 @@ function haml_wp_head()
   return $head;
 }
 
+function haml_edit_post_link($link = 'Edit This', $before = '', $after = '')
+{
+  ob_start();
+  edit_post_link($link, $before, $after);
+  $link = ob_get_clean();
+  ob_end_flush();
+  return $link;
+}
+
+function haml_comments_popup_link( $zero = 'No Comments', $one = '1 Comment', $more = '% Comments', $css_class = '', $none = 'Comments Off' )
+{
+  ob_start();
+  comments_popup_link($zero, $one, $more, $css_class, $none);
+  $link = ob_get_clean();
+  ob_end_flush();
+  return $link;
+}
+
+function haml_the_post()
+{
+  ob_start();
+  the_post();
+  $post = ob_get_clean();
+  ob_end_flush();
+  return $post;
+}
+
 add_action('template_redirect', 'haml_template_redirect');

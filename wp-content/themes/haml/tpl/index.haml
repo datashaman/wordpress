@@ -11,7 +11,7 @@
       #id.narrowcolumn
         - if(have_posts()):
           - while(have_posts())
-            - the_post()
+            = haml_the_post()
             - $class = join(' ', get_post_class())
             - $permalink = haml_the_permalink()
             %div{:id => 'post'.get_the_ID(), :class => $class}
@@ -22,11 +22,11 @@
                 - the_time('F jS, Y')
               .entry
                 - the_content('Read the rest of this entry &raquo;')
-              %p.postmetadata
-                - the_tags('Tags: ', ', ', '<br />')
-                = 'Posted in '.the_category().' | '
-                - edit_post_link('Edit', '', ' | ')
-                - comments_popup_link('No Comments &#187;', '1 Comment &#187;', '%Comments &#187;')
+              .postmetadata
+                = the_tags('Tags: ', ', ', '<br />')
+                = 'Posted in '.get_the_category_list().' | '
+                = haml_edit_post_link('Edit', '', ' | ')
+                = haml_comments_popup_link('No Comments &#187;', '1 Comment &#187;', '%Comments &#187;')
           .navigation
             .alignleft
               - next_post_link('&laquo; Older Entries')
