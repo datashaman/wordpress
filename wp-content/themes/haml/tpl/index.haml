@@ -21,8 +21,9 @@
               .entry
                 - the_content('Read the rest of this entry &raquo;')
               .postmetadata
+                - $posted_in = "Posted in ".get_the_category_list()." \| "
                 = the_tags('Tags: ', ', ', '<br />')
-                = 'Posted in '.get_the_category_list().' | '
+                = $posted_in
                 = haml_edit_post_link('Edit', '', ' | ')
                 = haml_comments_popup_link('No Comments &#187;', '1 Comment &#187;', '%Comments &#187;')
           .navigation

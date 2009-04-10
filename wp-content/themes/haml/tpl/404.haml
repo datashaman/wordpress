@@ -1,7 +1,13 @@
-- get_header()
+!!!
+%html{ :xmlns => "http://www.w3.org/1999/xhtml", xml:lang => "en" }
+  !! head
+  - $body_class = join(' ', get_body_class())
+  %body{ :class => $body_class }
+    #page
+      !! header
 
-#.narrowcolumn
-  %h2.center Error 404 - Not Found
+      #.narrowcolumn
+        %h2.center Error 404 - Not Found
 
-- get_sidebar()
-- get_footer()
+      !! sidebar
+      !! footer

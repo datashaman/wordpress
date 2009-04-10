@@ -27,6 +27,7 @@ function haml_render_template($template_name, $variables = array())
 {
   static $parser;
   empty($parser) and $parser = new HamlParser(TEMPLATEPATH.'/tpl', TEMPLATEPATH.'/tmp');
+  $parser->removeBlank(true);
   $parser->clearCompiled();
   $parser->append($variables);
   $result = $parser->fetch($template_name);
